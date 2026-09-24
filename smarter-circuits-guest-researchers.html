@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Smarter Circuits Anonymous Guest Researcher Program — help test unusual smart-home, DIY, electronics, and specialty products while keeping your identity off-camera." />
+  <title>Anonymous Guest Researchers | Smarter Circuits</title>
+
+  <style>
+    :root {
+      --bg: #0a0c0f;
+      --panel: #11151a;
+      --panel-2: #171c22;
+      --text: #edf2f7;
+      --muted: #a8b2bd;
+      --line: #2a323b;
+      --accent: #7ee787;
+      --accent-2: #58a6ff;
+      --warning: #f2cc60;
+      --max: 1120px;
+      --radius: 18px;
+      --shadow: 0 24px 80px rgba(0,0,0,.34);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(88,166,255,.12), transparent 34rem),
+        radial-gradient(circle at 85% 5%, rgba(126,231,135,.09), transparent 30rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(calc(100% - 36px), var(--max));
+      margin-inline: auto;
+    }
+
+    header {
+      padding: 26px 0 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      background: rgba(17,21,26,.78);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #07110a;
+      font-weight: 950;
+      box-shadow: 0 0 28px rgba(126,231,135,.2);
+      flex: 0 0 auto;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: .92rem;
+    }
+
+    .navlinks a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+    }
+
+    .hero {
+      padding: 96px 0 66px;
+      display: grid;
+      grid-template-columns: 1.35fr .75fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(126,231,135,.28);
+      background: rgba(126,231,135,.07);
+      color: #bdf5c3;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px var(--accent);
+    }
+
+    h1 {
+      margin: 22px 0 20px;
+      max-width: 820px;
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: .94;
+      letter-spacing: -.065em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+      margin: 0;
+    }
+
+    .hero strong { color: var(--text); }
+
+    .cta-row {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 17px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: #46515d;
+    }
+
+    .button.primary {
+      color: #08100a;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), #a4f1aa);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+    }
+
+    .hero-card {
+      min-height: 410px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(145deg, #121820, #0c1015);
+      background-size: 34px 34px, 34px 34px, auto;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .silhouette {
+      width: 210px;
+      aspect-ratio: 1 / 1.22;
+      position: relative;
+      filter: drop-shadow(0 18px 28px rgba(0,0,0,.45));
+    }
+
+    .head {
+      width: 42%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #242c35, #161b21);
+      position: absolute;
+      left: 29%;
+      top: 4%;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .mask {
+      position: absolute;
+      width: 45%;
+      height: 17%;
+      left: 27.5%;
+      top: 16%;
+      border-radius: 9px 9px 18px 18px;
+      background: linear-gradient(90deg, #090b0e, #151b21, #090b0e);
+      border: 1px solid rgba(126,231,135,.24);
+      box-shadow: 0 0 32px rgba(126,231,135,.09);
+    }
+
+    .body-shape {
+      position: absolute;
+      width: 86%;
+      height: 66%;
+      left: 7%;
+      bottom: 0;
+      border-radius: 42% 42% 13% 13% / 22% 22% 9% 9%;
+      background: linear-gradient(180deg, #1c232b, #101419);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .badge-stack {
+      position: absolute;
+      inset: auto 18px 18px 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .mini {
+      padding: 10px 8px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(10,12,15,.72);
+      border-radius: 12px;
+      font-size: .75rem;
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+    }
+
+    section {
+      padding: 68px 0;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      letter-spacing: -.045em;
+      line-height: 1.03;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.018));
+      box-shadow: 0 15px 50px rgba(0,0,0,.12);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      margin-bottom: 18px;
+      background: rgba(88,166,255,.11);
+      border: 1px solid rgba(88,166,255,.28);
+      color: #9fcaff;
+      font-weight: 900;
+    }
+
+    .callout {
+      margin: 28px 0 0;
+      padding: 22px 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(242,204,96,.24);
+      background: rgba(242,204,96,.055);
+      color: #d9d2b4;
+    }
+
+    .callout strong { color: #fff3b0; }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 30px;
+      color: var(--muted);
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 950;
+    }
+
+    .anonymous {
+      padding: 34px;
+      border-radius: 24px;
+      border: 1px solid rgba(126,231,135,.2);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(126,231,135,.08), transparent 35%),
+        var(--panel);
+    }
+
+    .anonymous h3 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .anonymous p, .anonymous li { color: var(--muted); }
+
+    .faq {
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.022);
+      padding: 0 18px;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 0;
+      font-weight: 800;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .apply {
+      margin: 72px 0 86px;
+      padding: clamp(28px, 5vw, 54px);
+      border-radius: 28px;
+      border: 1px solid rgba(88,166,255,.22);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(88,166,255,.14), transparent 34%),
+        radial-gradient(circle at 90% 25%, rgba(126,231,135,.11), transparent 28%),
+        #11161c;
+      box-shadow: var(--shadow);
+    }
+
+    .apply h2 {
+      max-width: 800px;
+    }
+
+    .apply p {
+      max-width: 800px;
+      color: var(--muted);
+    }
+
+    .form-note {
+      margin-top: 22px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--accent-2);
+      background: rgba(88,166,255,.05);
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: #7f8a96;
+      padding: 28px 0 42px;
+      font-size: .88rem;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 66px;
+      }
+
+      .hero-card {
+        min-height: 330px;
+      }
+
+      .grid.three, .grid.two {
+        grid-template-columns: 1fr;
+      }
+
+      .navlinks a:not(.keep) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wrap { width: min(calc(100% - 24px), var(--max)); }
+      .nav { border-radius: 18px; }
+      .brand span:last-child { font-size: .92rem; }
+      h1 { font-size: clamp(2.7rem, 16vw, 4.4rem); }
+      .badge-stack { grid-template-columns: 1fr; }
+      .mini:nth-child(2), .mini:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">SC</div>
+        <span>Smarter Circuits</span>
+      </div>
+      <div class="navlinks">
+        <a href="#concept">The idea</a>
+        <a href="#process">How it works</a>
+        <a href="#privacy">Anonymity</a>
+        <a href="#interest" class="keep">Get involved</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Experimental collaboration program</div>
+        <h1>Become an anonymous guest researcher.</h1>
+        <p>
+          Smarter Circuits gets access to more devices, gadgets and strange little pieces of technology
+          than one person can realistically use, test or even give away. Some of them need a very specific
+          environment, skill set, pet, hobby or use case. <strong>That is where you come in.</strong>
+        </p>
+        <div class="cta-row">
+          <a class="button primary" href="#interest">I might be interested</a>
+          <a class="button secondary" href="#process">See how it works</a>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Anonymous researcher illustration">
+        <div class="silhouette" aria-hidden="true">
+          <div class="body-shape"></div>
+          <div class="head"></div>
+          <div class="mask"></div>
+        </div>
+        <div class="badge-stack" aria-hidden="true">
+          <div class="mini">Real-world testing</div>
+          <div class="mini">Identity optional</div>
+          <div class="mini">Collaborative research</div>
+        </div>
+      </div>
+    </div>
+
+    <section id="concept">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">The concept</div>
+          <h2>More useful testing. More interesting people. Less perfectly good hardware gathering dust.</h2>
+          <p>
+            The idea is to build a loose network of viewers, makers, tinkerers and specialists who can help
+            test products that are difficult for the channel to evaluate properly on its own.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="card">
+            <div class="num">01</div>
+            <h3>You have the right situation</h3>
+            <p>
+              Maybe you have a cat, an EV, a workshop, an old house, a garden, a server rack, a disability-access
+              use case, an unusual HVAC system, or some other environment a product was actually designed for.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="num">02</div>
+            <h3>We design the test together</h3>
+            <p>
+              This is not just “film yourself opening the box.” We work out useful questions, test conditions,
+              observations and shots so the result contributes something meaningful to the final video.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="num">03</div>
+            <h3>You become part of the story</h3>
+            <p>
+              Your footage, results and observations may appear as a recurring anonymous researcher segment,
+              letting the channel cover products and scenarios that would otherwise be impractical.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">How it works</div>
+          <h2>A collaboration, not a random product drop.</h2>
+          <p>
+            Each project will be a little different, but the basic workflow is intentionally simple.
+          </p>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <h3>1. Match</h3>
+            <p>
+              A product comes in that needs a type of tester, environment or expertise I do not have.
+              I look for someone who is a good fit.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>2. Plan</h3>
+            <p>
+              We discuss what needs to be learned, what can realistically be tested, what footage would help,
+              and any special privacy or logistics requirements.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>3. Test & film</h3>
+            <p>
+              You carry out the agreed tests and record the useful parts. Depending on the project, that may be
+              hands-only footage, wide shots, close-ups, demonstrations, measurements or simple reactions.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>4. Report back</h3>
+            <p>
+              You send the footage, notes, measurements and observations. I use that material as part of the
+              research and, where appropriate, in the finished Smarter Circuits video.
+            </p>
+          </article>
+        </div>
+
+        <div class="callout">
+          <strong>Important:</strong> whether a device is a loan, needs to be returned, or can be kept will be
+          made clear before anything is shipped. The same goes for any project-specific costs, deadlines or other
+          expectations. No surprises.
+        </div>
+      </div>
+    </section>
+
+    <section id="fit">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Who this is for</div>
+          <h2>You do not need to be a YouTuber.</h2>
+          <p>
+            What matters most is curiosity, reliability, usable camera work and the ability to follow a test plan
+            while also noticing things nobody thought to put on the test plan.
+          </p>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <h3>You would probably be a good fit if you…</h3>
+            <ul class="checklist">
+              <li>enjoy testing, measuring, tinkering or figuring out how things work;</li>
+              <li>can record steady, well-lit video with a phone or camera;</li>
+              <li>can follow basic shot requests and repeat a demonstration when needed;</li>
+              <li>are comfortable giving candid feedback, including when a product is disappointing;</li>
+              <li>can communicate clearly and follow through on an agreed project;</li>
+              <li>have an unusual environment, hobby, pet, profession or technical specialty that creates useful test cases.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>You do not need…</h3>
+            <ul class="checklist">
+              <li>a public social-media presence;</li>
+              <li>a professional camera;</li>
+              <li>a perfect studio;</li>
+              <li>to speak on camera;</li>
+              <li>to reveal your real name or face to the audience;</li>
+              <li>to pretend to like a product that does not work well.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="wrap">
+        <div class="anonymous">
+          <div class="kicker">The gimmick — and the privacy feature</div>
+          <h2>Your public identity can stay hidden.</h2>
+          <p>
+            Part of the fun is that guest researchers can appear as deliberately anonymous characters. A mask,
+            helmet, hood, face covering, silhouette, unusual framing or some other visual disguise can turn each
+            researcher into a recognizable recurring presence without requiring them to become a public personality.
+          </p>
+          <p>
+            You may not need to speak at all. Gestures, demonstrations, measurements, captions and voice-over added
+            later can do a lot of the storytelling. If voice is useful, we can decide project by project whether to
+            use it, process it, replace it with narration, or simply keep the segment silent.
+          </p>
+          <p>
+            The goal is not secrecy for secrecy's sake. It is to make participation possible for people who would
+            enjoy helping with the research but have no interest in putting their face, name or personal life on YouTube.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="footage">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">What good footage looks like</div>
+          <h2>Useful beats cinematic.</h2>
+          <p>
+            A modern phone is usually enough. The priority is that viewers can clearly see what is being tested
+            and understand the result.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="card">
+            <h3>Stable</h3>
+            <p>Use a tripod, clamp, shelf or other support whenever possible. Slow intentional movement is fine; accidental wobble is not.</p>
+          </article>
+          <article class="card">
+            <h3>Visible</h3>
+            <p>Give the subject enough light. Avoid filming important details against a blown-out window or in a dark corner.</p>
+          </article>
+          <article class="card">
+            <h3>Repeatable</h3>
+            <p>Leave a few seconds before and after an action. If something important happens too quickly, do it again from a better angle.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">FAQ</div>
+          <h2>Things worth knowing up front.</h2>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Do I have to show my face?</summary>
+            <p>
+              No. In fact, the anonymous-researcher format is specifically designed so that you do not have to.
+              We can plan shots around a disguise, silhouette, hands-only framing or another approach that works.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do I have to talk on camera?</summary>
+            <p>
+              No. Many tests can be shown visually and explained later with narration or on-screen text.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do I get to keep the product?</summary>
+            <p>
+              Sometimes that may make sense and sometimes it may not. Product ownership or return requirements
+              will always be agreed before shipment.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is this paid?</summary>
+            <p>
+              Some collaborations may justify compensation, expenses or other arrangements, while others may simply
+              involve testing a product you are interested in. Any such terms would be discussed before the project begins.
+            </p>
+          </details>
+
+          <details>
+            <summary>Will my real opinion be used?</summary>
+            <p>
+              That is the point. The value of the program is independent observation. A test is not useful if the
+              conclusion is predetermined.
+            </p>
+          </details>
+
+          <details>
+            <summary>What kinds of products might need guest researchers?</summary>
+            <p>
+              Potentially anything within the broader Smarter Circuits world: smart-home hardware, sensors,
+              networking gear, tools, electronics, appliances, energy products, unusual household devices,
+              accessibility products and other technology that needs a real-world environment to evaluate properly.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap" id="interest">
+      <section class="apply">
+        <div class="kicker">Interested?</div>
+        <h2>Tell me what makes you a useful test subject.</h2>
+        <p>
+          The most useful introduction is not a résumé. Tell me what you have access to, what you know how to do,
+          what kinds of things you enjoy testing, and any oddball circumstances that might make you the perfect
+          person for a future product.
+        </p>
+        <p>
+          It also helps to mention what you can film with, whether you are comfortable appearing in disguise,
+          and whether you would prefer completely silent / hands-only participation.
+        </p>
+
+        <div class="form-note">
+          <strong>Suggested response:</strong><br>
+          “I’m interested in being a guest researcher. I have access to ______, I know a fair amount about ______,
+          I can film with ______, and I’d be especially useful for testing ______.”
+        </div>
+
+        <div class="cta-row">
+          <!-- Replace the href below with your preferred email address, form URL, or application page. -->
+          <a class="button primary" href="mailto:?subject=Smarter%20Circuits%20Guest%20Researcher">Volunteer as a guest researcher</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Smarter Circuits · Anonymous Guest Researcher Program
+    </div>
+  </footer>
+</body>
+</html>
